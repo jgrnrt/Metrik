@@ -43,6 +43,10 @@ public class MyCanvas extends Canvas {
         });
     }
 
+    public void changeBackgroundColor (Color c){
+        setBackground(c);
+    }
+
 
     /**
      * paint() method to draw inside the canvas
