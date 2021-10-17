@@ -3,6 +3,7 @@ package de.medieninformatik.softwaretechnik;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
 /**
  * MyCanvas class which inherits the Canvas class to create Canvas
@@ -13,6 +14,9 @@ public class MyCanvas extends Canvas {
     private int firstX = 0; //Click Coordinates
     private int firstY = 0;
     private int count = 0; //Count for CLick Cycle
+
+    private int[] Coordinate1 = new int[2];
+    private int[] Coordinate2 = new int[2];
 
     /**
      * Constructs a new Canvas.
@@ -27,7 +31,17 @@ public class MyCanvas extends Canvas {
                 //first 2 mouse clicks
                 if (count < 2) {
                     if (firstX == e.getX() && firstY == e.getY()){
+                        //first Circle, save coordinates
+                        if(count==0){
+                            Coordinate1[0] = e.getX();
+                            Coordinate1[1] = e.getY();
+                        } else {
+                            //second circle
+                            Coordinate2[0] = e.getX();
+                            Coordinate2[1] = e.getY();
+                        }
                         paintCircle(getGraphics(), e);
+                        showCoordinates(getGraphics(),e);
                         count++;
                     } else {
                         //save old coordinates
@@ -59,5 +73,14 @@ public class MyCanvas extends Canvas {
     public void paintCircle(Graphics g, MouseEvent e) {
         g.setColor(Color.RED);
         g.fillOval(e.getX()-100, e.getY()-100, 200, 200);
+    }
+
+    public void showCoordinates(Graphics g, MouseEvent e) {
+        g.setFont(new Font("Bold", Font.BOLD,20));
+        if (count == 0) {
+            g.drawString("Koordinate 1: "+ Arrays.toString(Coordinate1),100,100);
+        } else {
+            g.drawString("Koordinate 2: "+ Arrays.toString(Coordinate2),100,130);
+        }
     }
 }
