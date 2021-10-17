@@ -54,6 +54,6 @@ public class MyCanvas extends Canvas {
 
     public void paintCircle(Graphics g, MouseEvent e) {
         g.setColor(Color.RED);
-        g.fillOval(e.getX()-100, e.getY()-100, 200, 200);
+        g.fillRect(e.getX()-100, e.getY()-100, 200, 200);
     }
 }
