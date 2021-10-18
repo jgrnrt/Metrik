@@ -75,10 +75,10 @@ public class MyCanvas extends Canvas {
     }
 
     /**
-     * get the circle radius
+     * set circle radius
      */
     public void setRadius(int radius) {
-
+        this.radius = radius;
     }
 
     /**
