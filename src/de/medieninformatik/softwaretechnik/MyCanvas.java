@@ -40,9 +40,10 @@ public class MyCanvas extends Canvas {
                             //second circle
                             Coordinate2[0] = e.getX();
                             Coordinate2[1] = e.getY();
+                            paintDistance(getGraphics());
                         }
                         paintCircle(getGraphics(), e);
-                        showCoordinates(getGraphics(),e);
+                        showCoordinates(getGraphics());
                         count++;
                     } else {
                         //save old coordinates
@@ -92,7 +93,7 @@ public class MyCanvas extends Canvas {
     /**
      * Print Coordinates on Canvas
      */
-    public void showCoordinates(Graphics g, MouseEvent e) {
+    public void showCoordinates(Graphics g) {
         g.setFont(new Font("Bold", Font.BOLD,20));
         if (count == 0) {
             g.drawString("Koordinate 1: "+ Arrays.toString(Coordinate1),100,100);
@@ -100,4 +101,22 @@ public class MyCanvas extends Canvas {
             g.drawString("Koordinate 2: "+ Arrays.toString(Coordinate2),100,130);
         }
     }
+
+    /**
+     * calculates the distance of the two circles
+     */
+    public double calcDistance(){
+        return Math.sqrt((Coordinate2[1] - Coordinate1[1]) * (Coordinate2[1] - Coordinate1[1]) +
+                (Coordinate2[0] - Coordinate1[0]) * (Coordinate2[0] - Coordinate1[0]));
+    }
+
+    /**
+     * paints the distance on the canvas as a double
+     */
+    public void paintDistance(Graphics g){
+        g.setColor(Color.black);
+        g.setFont(new Font("Bold", Font.BOLD,20));
+        g.drawString("Distanz: " + calcDistance(),100,160);
+    }
+
 }
