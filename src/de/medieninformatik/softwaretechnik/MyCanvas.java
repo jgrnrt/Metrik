@@ -16,8 +16,8 @@ public class MyCanvas extends Canvas {
     private int count = 0; //Count for CLick Cycle
     private int radius = 100;
 
-    private int[] Coordinate1 = new int[2];
-    private int[] Coordinate2 = new int[2];
+    private int[] coordinate1 = new int[2];
+    private int[] coordinate2 = new int[2];
 
     /**
      * Constructs a new Canvas.
@@ -33,16 +33,16 @@ public class MyCanvas extends Canvas {
                 if (count < 2) {
                     if (firstX == e.getX() && firstY == e.getY()){
                         //first Circle, save coordinates
-                        if(count==0){
-                            Coordinate1[0] = e.getX();
-                            Coordinate1[1] = e.getY();
+                        if(count == 0){
+                            coordinate1[0] = e.getX();
+                            coordinate1[1] = e.getY();
                         } else {
                             //second circle
-                            Coordinate2[0] = e.getX();
-                            Coordinate2[1] = e.getY();
-                            paintDistance(getGraphics());
+                            coordinate2[0] = e.getX();
+                            coordinate2[1] = e.getY();
                         }
                         paintCircle(getGraphics(), e);
+                        if(count == 1) paintDistance(getGraphics());
                         showCoordinates(getGraphics());
                         count++;
                     } else {
@@ -96,9 +96,9 @@ public class MyCanvas extends Canvas {
     public void showCoordinates(Graphics g) {
         g.setFont(new Font("Bold", Font.BOLD,20));
         if (count == 0) {
-            g.drawString("Koordinate 1: "+ Arrays.toString(Coordinate1),100,100);
+            g.drawString("Koordinate 1: "+ Arrays.toString(coordinate1),100,100);
         } else {
-            g.drawString("Koordinate 2: "+ Arrays.toString(Coordinate2),100,130);
+            g.drawString("Koordinate 2: "+ Arrays.toString(coordinate2),100,130);
         }
     }
 
@@ -106,8 +106,8 @@ public class MyCanvas extends Canvas {
      * calculates the distance of the two circles
      */
     public double calcDistance(){
-        return Math.sqrt((Coordinate2[1] - Coordinate1[1]) * (Coordinate2[1] - Coordinate1[1]) +
-                (Coordinate2[0] - Coordinate1[0]) * (Coordinate2[0] - Coordinate1[0]));
+        return Math.sqrt((coordinate2[1] - coordinate1[1]) * (coordinate2[1] - coordinate1[1]) +
+                (coordinate2[0] - coordinate1[0]) * (coordinate2[0] - coordinate1[0]));
     }
 
     /**
@@ -117,6 +117,6 @@ public class MyCanvas extends Canvas {
         g.setColor(Color.black);
         g.setFont(new Font("Bold", Font.BOLD,20));
         g.drawString("Distanz: " + calcDistance(),100,160);
+        g.drawLine(coordinate1[0], coordinate1[1], coordinate2[0], coordinate2[1]);
     }
-
 }
