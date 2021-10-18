@@ -35,25 +35,28 @@ public class Metrik{
         //Menubar
         MenuBar mb = new MenuBar();
         Menu menu = new Menu("Hintergrundfarbe");
+        Menu menu2 = new Menu("Kreis-Radius bestimmen");
         MenuItem green = new MenuItem("Grün");
         MenuItem gray = new MenuItem("Grau");
         menu.add(gray);
         menu.add(green);
         mb.add(menu);
+        mb.add(menu2);
         f.setMenuBar(mb);
 
-        gray.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                myCanvas.changeBackgroundColor(Color.gray);
-            }
-        });
 
-        green.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                myCanvas.changeBackgroundColor(Color.green);
-            }
+        //Backgroundcolors
+        gray.addActionListener(e -> myCanvas.changeBackgroundColor(Color.gray));
+
+        green.addActionListener(e -> myCanvas.changeBackgroundColor(Color.green));
+
+        //set circle radius
+        menu2.addActionListener(e -> {
+            //int radius
+            // dialog fenster
+            // abfrage eingabe nutzer
+            //mycanvas.setradius(radius)
+
         });
     }
 }

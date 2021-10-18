@@ -14,6 +14,7 @@ public class MyCanvas extends Canvas {
     private int firstX = 0; //Click Coordinates
     private int firstY = 0;
     private int count = 0; //Count for CLick Cycle
+    private int radius = 100;
 
     private int[] Coordinate1 = new int[2];
     private int[] Coordinate2 = new int[2];
@@ -57,6 +58,9 @@ public class MyCanvas extends Canvas {
         });
     }
 
+    /**
+     * change background color of canvas
+     */
     public void changeBackgroundColor (Color c){
         setBackground(c);
     }
@@ -70,11 +74,24 @@ public class MyCanvas extends Canvas {
         super.paint(g);
     }
 
-    public void paintCircle(Graphics g, MouseEvent e) {
-        g.setColor(Color.RED);
-        g.fillOval(e.getX()-100, e.getY()-100, 200, 200);
+    /**
+     * get the circle radius
+     */
+    public void setRadius(int radius) {
+
     }
 
+    /**
+     * Paint Circle on canvas
+     */
+    public void paintCircle(Graphics g, MouseEvent e) {
+        g.setColor(Color.RED);
+        g.fillOval(e.getX()-radius, e.getY()-radius, radius*2, radius*2);
+    }
+
+    /**
+     * Print Coordinates on Canvas
+     */
     public void showCoordinates(Graphics g, MouseEvent e) {
         g.setFont(new Font("Bold", Font.BOLD,20));
         if (count == 0) {
